@@ -21,6 +21,20 @@ export interface ILoginErrorResponse {
 }
 
 /**
+ * 设置新密码 API 的请求体（Payload）类型
+ */
+export interface ISetPasswordPayload {
+  newPassword: string;
+}
+
+/**
+ * 设置新密码 API 的成功响应类型
+ */
+export interface ISetPasswordSuccessResponse {
+  data: IAuthUser;
+}
+
+/**
  *
  * 登录服务函数
  * @param payload 包含 phone 和 password 的对象
@@ -48,5 +62,33 @@ export async function login(
   });
 
   const resp = await api.post<ILoginSuccessResponse>(uri, payload);
+  return resp.data;
+}
+
+/**
+ *
+ * 设置新密码服务函数
+ * @param payload 包含 newPassword 的对象
+ * @returns Promise
+ */
+export async function setPassword(
+  payload: ISetPasswordPayload
+): Promise<ISetPasswordSuccessResponse> {
+  // TODO : 实现设置新密码API
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        data: {
+          id: "mockUserId",
+          name: "Mock User",
+          phone: "1234567890",
+          role: "Administrator",
+        },
+      });
+    }, 1000);
+  });
+
+  const uri = "/auth/set-password";
+  const resp = await api.post<ISetPasswordSuccessResponse>(uri, payload);
   return resp.data;
 }
