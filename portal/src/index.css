@@ -1,0 +1,242 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+
+  --color-placeholder: var(--placeholder);
+  --color-disabled: var(--disabled);
+
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  /* --- 设计规范 Start --- */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  /* --- 设计规范 End --- */
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* :root 定义了应用的基础（亮色）主题 */
+:root {
+  /* --- 布局与圆角 --- */
+  /* 基础圆角，对应设计规范中的圆角风格。10px 提供现代且亲和的观感 */
+  --radius: 0.625rem;
+
+  /* --- 核心背景与文本颜色 --- */
+  /* 页面主要背景色，对应 token: bg-primary (#FFFFFF) */
+  --background: oklch(1 0 0);
+  /* 页面主要前景色/文本色，对应 token: text-primary (#1E293B) */
+  --foreground: oklch(0.24 0.021 260.45);
+
+  /* --- 卡片与弹层颜色 --- */
+  /* 卡片背景色，对应 token: bg-primary (#FFFFFF) */
+  --card: oklch(1 0 0);
+  /* 卡片前景色/文本色，对应 token: text-primary (#1E293B) */
+  --card-foreground: oklch(0.24 0.021 260.45);
+  /* 弹层（Popover）背景色，对应 token: bg-primary (#FFFFFF) */
+  --popover: oklch(1 0 0);
+  /* 弹层前景色/文本色，对应 token: text-primary (#1E293B) */
+  --popover-foreground: oklch(0.24 0.021 260.45);
+
+  /* --- 品牌主色 --- */
+  /* 品牌主色，用于主要按钮等核心交互元素。对应 token: brand-700 (#5B21B6) */
+  --primary: oklch(0.441 0.22 291.36);
+  /* 主色之上的前景色/文本色。对应纯白色 (#FFFFFF) */
+  --primary-foreground: oklch(1 0 0);
+
+  /* --- 次要元素颜色 --- */
+  /* 次要按钮等元素的背景色。对应 token: bg-secondary (#F8FAFC) */
+  --secondary: oklch(0.985 0.003 293.2);
+  /* 次要元素之上的前景色/文本色。对应 token: text-primary (#1E293B) */
+  --secondary-foreground: oklch(0.24 0.021 260.45);
+
+  /* --- 柔和/静默状态颜色 --- */
+  /* 用于柔和的背景，如标签。对应 token: brand-100 (#EDE9FE) */
+  --muted: oklch(0.943 0.039 290.34);
+  /* 柔和背景之上的前景色/文本色。对应 token: text-secondary (#64748B) */
+  --muted-foreground: oklch(0.53 0.015 259.2);
+
+  /* --- 选中/悬停状态颜色 --- */
+  /* 用于列表项悬停等交互。对应 token: brand-100 (#EDE9FE) */
+  --accent: oklch(0.943 0.039 290.34);
+  /* 选中/悬停状态之上的前景色/文本色。对应 token: brand-700 (#5B21B6) */
+  --accent-foreground: oklch(0.441 0.22 291.36);
+
+  /* 输入框占位符文本颜色。对应 token: text-placeholder (#94A3B8) */
+  --placeholder: oklch(0.7 0.012 258.14);
+  /* 禁用状态的文本颜色。对应 token: text-disabled (#CBD5E1) */
+  --disabled: oklch(0.85 0.007 259.72);
+
+  /* --- 危险/破坏性操作颜色 --- */
+  /* 用于删除按钮、错误提示。对应 token: error-500 (#EF4444) */
+  --destructive: oklch(0.61 0.203 16.5);
+
+  /* --- 功能色：成功、警告、信息 --- */
+  /* 成功状态，对应 token: success-500 (#10B981) */
+  --success: oklch(0.66 0.14 163);
+  /* 成功状态前景，对应 token: success-100 (#D1FAE5) */
+  --success-foreground: oklch(0.96 0.04 163);
+  /* 警告状态，对应 token: warning-500 (#F59E0B) */
+  --warning: oklch(0.75 0.16 80);
+  /* 警告状态前景，对应 token: warning-100 (#FEF3C7) */
+  --warning-foreground: oklch(0.97 0.05 92);
+  /* 信息状态，对应 token: info-500 (#0EA5E9) */
+  --info: oklch(0.71 0.14 230);
+  /* 信息状态前景，对应 token: info-100 (#E0F2FE) */
+  --info-foreground: oklch(0.95 0.03 230);
+
+  /* --- 边框与输入框颜色 --- */
+  /* 默认边框颜色。对应 token: border-primary (#E2E8F0) */
+  --border: oklch(0.922 0.005 260.31);
+  /* 输入框默认边框颜色。对应 token: border-primary (#E2E8F0) */
+  --input: oklch(0.922 0.005 260.31);
+  /* 焦点状态的外发光（Ring）颜色。对应 token: brand-500 (#6D28D9) */
+  --ring: oklch(0.488 0.243 289.89);
+
+  /* --- 图表颜色 (未在规范中定义，采用默认) --- */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* --- 侧边栏颜色 (若有) --- */
+  /* 侧边栏背景色，对应 token: bg-secondary (#F8FAFC) */
+  --sidebar: oklch(0.985 0.003 293.2);
+  /* 侧边栏前景色/文本色，对应 token: text-primary (#1E293B) */
+  --sidebar-foreground: oklch(0.24 0.021 260.45);
+  /* 侧边栏主操作色，对应 token: brand-700 (#5B21B6) */
+  --sidebar-primary: oklch(0.441 0.22 291.36);
+  /* 侧边栏主操作色之上的前景色，对应纯白色 (#FFFFFF) */
+  --sidebar-primary-foreground: oklch(1 0 0);
+  /* 侧边栏选中/悬停色，对应 token: brand-100 (#EDE9FE) */
+  --sidebar-accent: oklch(0.943 0.039 290.34);
+  /* 侧边栏选中/悬停色之上的前景色，对应 token: brand-700 (#5B21B6) */
+  --sidebar-accent-foreground: oklch(0.441 0.22 291.36);
+  /* 侧边栏边框色，对应 token: border-primary (#E2E8F0) */
+  --sidebar-border: oklch(0.922 0.005 260.31);
+  /* 侧边栏焦点环颜色，对应 token: brand-500 (#6D28D9) */
+  --sidebar-ring: oklch(0.488 0.243 289.89);
+}
+
+/* .dark 定义了暗黑模式下的颜色变量 */
+.dark {
+  /* --- 核心背景与文本颜色 --- */
+  --background: oklch(0.15 0.02 260); /* 深蓝灰色背景 */
+  --foreground: oklch(0.95 0.01 260); /* 浅灰色文本 */
+
+  /* --- 卡片与弹层颜色 --- */
+  --card: oklch(0.18 0.02 260);
+  --card-foreground: oklch(0.95 0.01 260);
+  --popover: oklch(0.18 0.02 260);
+  --popover-foreground: oklch(0.95 0.01 260);
+
+  /* --- 品牌主色 --- */
+  /* 品牌主色，与亮色模式保持一致，使用 brand-700 以确保与白色前景色的对比度(5.8:1)达标 */
+  --primary: oklch(0.441 0.22 291.36);
+  /* 主色之上的文本为白色，对比度优秀 */
+  --primary-foreground: oklch(1 0 0);
+
+  /* --- 次要元素颜色 --- */
+  --secondary: oklch(0.25 0.02 260);
+  --secondary-foreground: oklch(0.95 0.01 260);
+
+  /* --- 柔和/静默状态颜色 --- */
+  --muted: oklch(0.25 0.02 260);
+  --muted-foreground: oklch(0.65 0.01 260); /* 降低辅助文本亮度 */
+
+  /* 暗模式下，占位符文本比辅助文本更暗 */
+  --placeholder: oklch(0.5 0.01 260);
+  /* 暗模式下，禁用文本是对比度最低的 */
+  --disabled: oklch(0.4 0.01 260);
+
+  /* --- 选中/悬停状态颜色 --- */
+  --accent: oklch(0.25 0.02 260);
+  /* 选中状态文本色使用更亮的紫色以保证清晰 */
+  --accent-foreground: oklch(0.6 0.2 290);
+
+  /* --- 危险/破坏性操作颜色 --- */
+  /* 提升危险色的亮度，使其在暗背景下更醒目 */
+  --destructive: oklch(0.65 0.2 16.5);
+
+  /* 提升功能色亮度以适应暗背景 */
+  --success: oklch(0.7 0.14 163);
+  --success-foreground: oklch(0.25 0.02 163);
+  --warning: oklch(0.8 0.16 80);
+  --warning-foreground: oklch(0.3 0.04 80);
+  --info: oklch(0.75 0.14 230);
+  --info-foreground: oklch(0.2 0.02 230);
+
+  /* --- 边框与输入框颜色 --- */
+  --border: oklch(0.3 0.02 260);
+  --input: oklch(0.3 0.02 260);
+  /* 焦点环颜色与主色保持一致 */
+  --ring: oklch(0.488 0.243 289.89);
+
+  /* --- 图表颜色 (调整为适合暗模式的亮度) --- */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.5 0.1 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* --- 侧边栏颜色 (暗模式) --- */
+  --sidebar: oklch(0.18 0.02 260);
+  --sidebar-foreground: oklch(0.95 0.01 260);
+  --sidebar-primary: oklch(0.488 0.243 289.89);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.25 0.02 260);
+  --sidebar-accent-foreground: oklch(0.6 0.2 290);
+  --sidebar-border: oklch(0.3 0.02 260);
+  --sidebar-ring: oklch(0.488 0.243 289.89);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-secondary text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+}
