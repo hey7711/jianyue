@@ -12,6 +12,7 @@ import { AddMemberStep } from "@/app/pages/onboarding/steps/AddMemberStep";
 import OnboardingCompletePage from "@/app/pages/onboarding/OnboardingCompletePage";
 import { useAuthStore } from "@/store/authStore";
 import { useOnboardingStore } from "@/store/onboardingStore";
+import  AppLayout  from "@/components/layout/AppLayout";
 
 // 这是一个临时的根组件，用于处理初始重定向
 const RootRedirect = () => {
@@ -102,16 +103,21 @@ const router: RouteObject[] = [
     path: "/app",
     Component: AppGuard,
     children: [
-      // TODO: 未来添加主应用的所有路由
       {
-        path: "appointments",
-        // 这是一个占位符，未来应替换为 AppointmentsPage
-        element: <div>后台主页 - 预约日历</div>,
-      },
-      // 默认重定向到 appointments
-      {
-        index: true,
-        element: <Navigate to="/app/appointments" replace />,
+        Component: AppLayout,
+        children: [
+          // TODO: 未来添加主应用的所有路由
+          {
+            path: "appointments",
+            // 这是一个占位符，未来应替换为 AppointmentsPage
+            element: <div>后台主页 - 预约日历</div>,
+          },
+          // 默认重定向到 appointments
+          {
+            index: true,
+            element: <Navigate to="/app/appointments" replace />,
+          },
+        ],
       },
     ],
   },

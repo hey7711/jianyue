@@ -138,23 +138,14 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
 
-  /* --- 侧边栏颜色 (若有) --- */
-  /* 侧边栏背景色，对应 token: bg-secondary (#F8FAFC) */
-  --sidebar: oklch(0.985 0.003 293.2);
-  /* 侧边栏前景色/文本色，对应 token: text-primary (#1E293B) */
-  --sidebar-foreground: oklch(0.24 0.021 260.45);
-  /* 侧边栏主操作色，对应 token: brand-700 (#5B21B6) */
-  --sidebar-primary: oklch(0.441 0.22 291.36);
-  /* 侧边栏主操作色之上的前景色，对应纯白色 (#FFFFFF) */
-  --sidebar-primary-foreground: oklch(1 0 0);
-  /* 侧边栏选中/悬停色，对应 token: brand-100 (#EDE9FE) */
-  --sidebar-accent: oklch(0.943 0.039 290.34);
-  /* 侧边栏选中/悬停色之上的前景色，对应 token: brand-700 (#5B21B6) */
-  --sidebar-accent-foreground: oklch(0.441 0.22 291.36);
-  /* 侧边栏边框色，对应 token: border-primary (#E2E8F0) */
-  --sidebar-border: oklch(0.922 0.005 260.31);
-  /* 侧边栏焦点环颜色，对应 token: brand-500 (#6D28D9) */
-  --sidebar-ring: oklch(0.488 0.243 289.89);
+  --sidebar: oklch(0.985 0 0); /* 亮色侧边栏背景 */
+  --sidebar-foreground: oklch(0.145 0 0); /* 亮色侧边栏文本 */
+  --sidebar-primary: oklch(0.205 0 0); /* 亮色侧边栏主操作色 */
+  --sidebar-primary-foreground: oklch(0.985 0 0); /* 亮色侧边栏主操作文本 */
+  --sidebar-accent: oklch(0.97 0 0); /* 亮色侧边栏悬停/选中背景 */
+  --sidebar-accent-foreground: oklch(0.205 0 0); /* 亮色侧边栏悬停/选中文字 */
+  --sidebar-border: oklch(0.922 0 0); /* 亮色侧边栏边框 */
+  --sidebar-ring: oklch(0.708 0 0); /* 亮色侧边栏焦点环 */
 }
 
 /* .dark 定义了暗黑模式下的颜色变量 */
@@ -219,14 +210,14 @@
   --chart-5: oklch(0.769 0.188 70.08);
 
   /* --- 侧边栏颜色 (暗模式) --- */
-  --sidebar: oklch(0.18 0.02 260);
-  --sidebar-foreground: oklch(0.95 0.01 260);
-  --sidebar-primary: oklch(0.488 0.243 289.89);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.25 0.02 260);
-  --sidebar-accent-foreground: oklch(0.6 0.2 290);
-  --sidebar-border: oklch(0.3 0.02 260);
-  --sidebar-ring: oklch(0.488 0.243 289.89);
+  --sidebar: oklch(0.205 0 0); /* 暗色侧边栏背景 */
+  --sidebar-foreground: oklch(0.985 0 0); /* 暗色侧边栏文本 */
+  --sidebar-primary: oklch(0.488 0.243 264.376); /* 暗色侧边栏主操作色 */
+  --sidebar-primary-foreground: oklch(0.985 0 0); /* 暗色侧边栏主操作文本 */
+  --sidebar-accent: oklch(0.269 0 0); /* 暗色侧边栏悬停/选中背景 */
+  --sidebar-accent-foreground: oklch(0.985 0 0); /* 暗色侧边栏悬停/选中文字 */
+  --sidebar-border: oklch(1 0 0 / 10%); /* 暗色侧边栏边框 (带透明度) */
+  --sidebar-ring: oklch(0.439 0 0); /* 暗色侧边栏焦点环 */
 }
 
 @layer base {
