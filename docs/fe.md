@@ -33,6 +33,13 @@
 ├── lib
 │   └── utils.ts
 └── main.tsx
+├── services 后端API交互函数
+│   └── authService.ts
+├── store Zustand Store状态
+│   ├── authStore.ts
+│   └── onboardingStore.ts
+└── types 模型类型定义
+    └── base.ts
 ```
 
 ## 核心技术栈专长
