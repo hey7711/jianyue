@@ -54,10 +54,15 @@ export function LoginForm() {
 
       loginAction(response.accessToken, response.user);
 
-      if (response.needsOnboarding) {
-        navigate("/onboarding/set-password");
-      } else {
+      if (response.user.status === "ACTIVE") {
+        // 进入到主应用
         navigate("/app/appointments");
+      } else {
+        // 而是重定向到根路径 '/'。
+        // 我们在根路径的 RootRedirect 组件包含了智能判断
+        // (检查 PENDING 状态 和 useOnboardingStore 的数据)
+        // 以便将用户发送到 *正确* 的中断步骤
+        navigate("/");
       }
     } catch (error) {
       // 6. 规范：处理来自 Service 的 API 异常

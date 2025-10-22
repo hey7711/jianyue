@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 // 规范：使用 lucide-react 图标
 import { Loader2, AlertCircle, RefreshCw } from "lucide-react"; // 引入 RefreshCw 图标
+import { useAuthStore } from "@/store/authStore";
 
 /**
  *
@@ -27,6 +28,7 @@ import { Loader2, AlertCircle, RefreshCw } from "lucide-react"; // 引入 Refres
  */
 export default function BindWechatPage() {
   const navigate = useNavigate();
+  const setUser = useAuthStore((state) => state.setUser);
 
   // 1. Hook 1: 获取二维码和 ticket
   const {
@@ -58,6 +60,7 @@ export default function BindWechatPage() {
   useEffect(() => {
     if (statusData?.status === "SUCCESS") {
       // (基于 阶段 0 的确认) 跳转到三步引导流程的第一步
+      setUser(statusData.user);
       navigate("/onboarding/shop-info");
     }
   }, [statusData, navigate]);

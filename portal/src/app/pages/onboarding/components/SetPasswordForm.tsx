@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod"; 
+import { z } from "zod";
 
 import {
   setPassword,
@@ -20,6 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useAuthStore } from "@/store/authStore";
 
 /**
  *
@@ -63,6 +64,7 @@ type SetPasswordFormValues = z.infer<typeof setPasswordSchema>;
 export function SetPasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const setUser = useAuthStore((state) => state.setUser);
 
   const form = useForm<SetPasswordFormValues>({
     resolver: zodResolver(setPasswordSchema),
@@ -78,9 +80,10 @@ export function SetPasswordForm() {
     form.clearErrors(); // 清除之前的 API 错误
 
     try {
-      await setPassword({
+      const resp = await setPassword({
         newPassword: values.newPassword,
       } as ISetPasswordPayload);
+      setUser(resp.user);
 
       navigate("/onboarding/bind-wechat"); // (约定路由)
     } catch (error) {

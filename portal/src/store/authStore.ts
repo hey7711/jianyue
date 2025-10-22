@@ -16,6 +16,8 @@ export interface IAuthUser {
    * 'Practitioner' (服务人员)
    */
   role: "Administrator" | "Operator" | "Practitioner" | string; // 使用 string 作为兜底
+  // 用户状态  PENDING_PASSWORD临时密码登录，必须设置新密码。 PENDING_WECHAT已设密码，必须绑定微信。 PENDING_SETUP已绑微信，必须完成三步引导。 ACTIVE正常用户
+  status: "PENDING_PASSWORD" | "PENDING_WECHAT" | "PENDING_SETUP" | "ACTIVE";
 }
 
 /**
@@ -41,6 +43,8 @@ interface IAuthActions {
    * 登出 Action
    */
   logout: () => void;
+
+  setUser: (user: IAuthUser) => void;
 }
 
 /**
@@ -73,6 +77,12 @@ export const useAuthStore = create<IAuthState & IAuthActions>()(
         set({
           accessToken: null,
           user: null,
+        });
+      },
+
+      setUser: (user: IAuthUser) => {
+        set({
+          user: user,
         });
       },
     }),
