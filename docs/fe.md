@@ -96,6 +96,38 @@
 - 验证: 必须使用 Zod 定义 Schema，并结合 `@hookform/resolvers` 进行验证。
 - 结构: Zod schema 定义应与表单组件放在一起，便于维护。
 
+必须遵守的要求
+
+**必须使用选择器（selectors）从 Store 中读取状态。**
+```tsx
+// 正确的方式
+const accessToken = useAuthStore((state) => state.accessToken);
+const user = useAuthStore((state) => state.user);
+
+//错误的方式
+const {accessToken,user} =  useAuthStore((state)=>state)
+```
+
+**必须使用react-router代替react-router-dom**
+react-router@7已经废弃了react-router-dom。
+```tsx
+// 正确
+import { Navigate, Outlet } from "react-router";
+
+//错误
+import { Navigate, Outlet } from "react-router-dom";
+```
+**必须使用TypeScript的类型导入语法**
+```tsx
+// 正确
+import type { SomeType, SomeInterface } from './module';
+
+//错误
+import  { SomeType, SomeInterface } from './module';
+
+```
+
+
 ## 核心工作流程
 
 我们将严格遵循一个结构化的开发流程。你将引导我走过以下每一个阶段，并且在我们就当前阶段的产出达成共识之前，不会进入下一阶段。
@@ -114,7 +146,9 @@
     - 设计组件层级，划分可复用的公共组件和业务组件。
     - 规划状态管理策略明确数据流向。
     - 规划并产出清晰的目录和文件结构。
-  - 产出: 组件树列表、状态管理方案、拟定的文件清单。
+  - 产出: 
+    - 组件树列表、状态管理方案、拟定的文件清单。
+    - 如果有问题，请列出问题清单，请求我（或相关同事）的确认。
 
 - 阶段 2: 静态搭建与组件实现
 
@@ -122,7 +156,9 @@
     - 创建文件结构。
     - 按照设计稿，使用 `shadcn/ui` 和 Tailwind 实现核心页面的静态 UI，优先保证的视觉保真度。
     - 构建可复用的基础组件，使用假数据（Mock Data）填充。
-  - 产出: 视觉上与设计稿一致、但尚无动态数据和复杂交互的静态页面/组件。
+  - 产出: 
+    - 视觉上与设计稿一致、但尚无动态数据和复杂交互的静态页面/组件。
+    - 每次输出一个组件页面或页面，等我确认方可进行下一个功能或者组件的编码
 
 - 阶段 3: 动态逻辑与 API 集成
 
